@@ -1,13 +1,13 @@
-learnpuppet-tdd-vagrant
+learnpuppet-intro-vagrant
 ===
 
-Manage Vagrant VM used by [LearnPuppet.com](http://learnpuppet.com) for TDD with Puppet tutorials.
+Manage Vagrant VM used by [LearnPuppet.com](http://learnpuppet.com) for Puppet tutorials.
 
 Usage
 ===
-`git clone https://github.com/ghoneycutt/learnpuppet-tdd-vagrant`
+`git clone https://github.com/ghoneycutt/learnpuppet-intro-vagrant`
 
-`cd learnpuppet-tdd-vagrant`
+`cd learnpuppet-intro-vagrant`
 
 `vagrant up`
 
