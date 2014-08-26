@@ -23,10 +23,19 @@ File {
               'CVS',
               '.bzr' ],
 }
+
+if versioncmp($::puppetversion,'3.6.1') >= 0 {
+
+  \$allow_virtual_packages = hiera('allow_virtual_packages',false)
+
+  Package {
+    allow_virtual => \$allow_virtual_packages,
+  }
+}
 EOF
 
 # install some gems
-gem install -V puppet-lint puppetlabs_spec_helper rake rspec-puppet librarian-puppet-simple --no-ri --no-rdoc
+gem install -V puppet-lint puppetlabs_spec_helper rake rspec-puppet librarian-puppet-simple r10k --no-ri --no-rdoc
 
 # update system
 yum -y update
@@ -38,15 +47,67 @@ mkdir -p `puppet config print vardir`/puppet-module/skeleton/
 rsync -avp --exclude .git puppet-module-skeleton/ `puppet config print vardir`/puppet-module/skeleton/
 
 # install puppet modules
-cd /usr/share/puppet && cp /vagrant/Puppetfile . && librarian-puppet install --verbose
+git clone https://github.com/ghoneycutt/puppet-modules.git /var/local/ghoneycutt-modules
 
-# install RVM
-#curl -sSL https://get.rvm.io | bash -s stable
-#source /etc/profile.d/rvm.sh
+# setup puppet.conf
+cat << EOF > /etc/puppet/puppet.conf
+[main]
+    # The Puppet log directory.
+    # The default value is '\$vardir/log'.
+    logdir = /var/log/puppet
 
-# Not actually doing this as it takes forever to compile and bootstrap the VM
-#
-#for version in 1.9.3 2.0.0
-#do
-#  rvm install $version
-#done
+    # Where Puppet PID files are kept.
+    # The default value is '\$vardir/run'.
+    rundir = /var/run/puppet
+
+    # Where SSL certificates are kept.
+    # The default value is '\$confdir/ssl'.
+    ssldir = \$vardir/ssl
+
+    # there can be only one
+    ca = true
+
+    # autosign certs
+    autosign = true
+
+    # alternative names on the cert (SAN's)
+    dns_alt_names = puppet.learnpuppet.net,puppet
+
+    # module lookup order
+    #   1st - modules per environment with r10k (environmentpath)
+    #   2nd - modules from Garrett Honeycutt (basemodulepath)
+    environmentpath = /etc/puppet/environments
+    basemodulepath = /var/local/ghoneycutt-modules/modules
+
+    # allow for structured facts
+    stringify_facts = false
+
+[agent]
+    # The file in which puppetd stores a list of the classes
+    # associated with the retrieved configuratiion.  Can be loaded in
+    # the separate ``puppet`` executable using the ``--loadclasses``
+    # option.
+    # The default value is '\$confdir/classes.txt'.
+    classfile = \$vardir/classes.txt
+
+    # Where puppetd caches the local configuration.  An
+    # extension indicating the cache format is added automatically.
+    # The default value is '\$confdir/localconfig'.
+    localconfig = \$vardir/localconfig
+
+    server = puppet.learnpuppet.net
+    ca_server = puppet.learnpuppet.net
+    report = true
+    graph = true
+    pluginsync = true
+
+[master]
+#  storeconfigs_backend = puppetdb
+#  storeconfigs = true
+  reports = store
+EOF
+
+# update modules
+cd /var/local/ghoneycutt-modules
+git pull
+./update_puppet_modules.sh
