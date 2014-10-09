@@ -5,7 +5,7 @@ wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch
 rpm -vhi /root/epel-release-6-8.noarch.rpm
 
 # install some software
-yum -y install colordiff ruby-devel redhat-lsb puppet-server tree
+yum -y install ruby-devel redhat-lsb puppet-server
 
 # seed site.pp
 cat << EOF > /etc/puppet/manifests/site.pp

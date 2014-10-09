@@ -5,7 +5,8 @@ node default {
   include vim
 
   class { 'utils':
-    packages => [ 'curl',
+    packages => [ 'colordiff',
+                  'curl',
                   'nc',
                   'screen',
                   'strace',
