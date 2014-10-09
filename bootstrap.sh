@@ -39,6 +39,10 @@ mkdir /etc/puppet/environments/production
 ln -s /etc/puppet/manifests /etc/puppet/environments/production/manifests
 ln -s /etc/puppet/modules /etc/puppet/environments/production/modules
 
+# Handle an error with Puppet
+# https://tickets.puppetlabs.com/browse/PUP-3324
+mkdir -p /etc/puppet/modules/PUP3324/lib
+
 # install some gems
 gem install -V puppet-lint puppetlabs_spec_helper rake rspec-puppet librarian-puppet-simple r10k --no-ri --no-rdoc
 
