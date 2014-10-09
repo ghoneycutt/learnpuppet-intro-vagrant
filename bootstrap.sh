@@ -34,6 +34,11 @@ if versioncmp($::puppetversion,'3.6.1') >= 0 {
 }
 EOF
 
+# handle environments
+mkdir /etc/puppet/environments/production
+ln -s /etc/puppet/manifests /etc/puppet/environments/production/manifests
+ln -s /etc/puppet/modules /etc/puppet/environments/production/modules
+
 # install some gems
 gem install -V puppet-lint puppetlabs_spec_helper rake rspec-puppet librarian-puppet-simple r10k --no-ri --no-rdoc
 
