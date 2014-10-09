@@ -37,17 +37,11 @@ EOF
 # install some gems
 gem install -V puppet-lint puppetlabs_spec_helper rake rspec-puppet librarian-puppet-simple r10k --no-ri --no-rdoc
 
-# update system
-yum -y update
-
 # install puppet skeleton
 cd ~
 git clone https://github.com/ghoneycutt/puppet-module-skeleton
 mkdir -p `puppet config print vardir`/puppet-module/skeleton/
 rsync -avp --exclude .git puppet-module-skeleton/ `puppet config print vardir`/puppet-module/skeleton/
-
-# install puppet modules
-git clone https://github.com/ghoneycutt/puppet-modules.git /var/local/ghoneycutt-modules
 
 # setup puppet.conf
 cat << EOF > /etc/puppet/puppet.conf
@@ -107,7 +101,14 @@ cat << EOF > /etc/puppet/puppet.conf
   reports = store
 EOF
 
+# install puppet modules
+git clone https://github.com/ghoneycutt/puppet-modules.git /var/local/ghoneycutt-modules
+
 # update modules
 cd /var/local/ghoneycutt-modules
 git pull
 ./update_puppet_modules.sh
+
+# update system
+yum -y update
+
