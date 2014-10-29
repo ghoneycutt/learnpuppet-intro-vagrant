@@ -33,3 +33,4 @@ spec/fixtures/
 
 # Vagrant
 .vagrant
+stats/
