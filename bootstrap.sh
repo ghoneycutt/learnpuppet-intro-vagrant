@@ -108,6 +108,7 @@ cat << EOF > /etc/puppet/puppet.conf
 #  storeconfigs_backend = puppetdb
 #  storeconfigs = true
   reports = store
+  ignorecache = true
 EOF
 
 # install puppet modules
