@@ -117,8 +117,7 @@ git clone https://github.com/ghoneycutt/puppet-modules.git /var/local/ghoneycutt
 # update modules
 cd /var/local/ghoneycutt-modules
 git pull
-./update_puppet_modules.sh
+./update_puppet_modules.sh https
 
 # update system
 yum -y update
-
