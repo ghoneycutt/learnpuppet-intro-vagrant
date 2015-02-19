@@ -3,6 +3,7 @@
 # install EPEL
 wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm -O /root/epel-release-6-8.noarch.rpm
 rpm -vhi /root/epel-release-6-8.noarch.rpm
+sed -i /etc/yum.repos.d/epel.repo -e 's/https:/http:/'
 
 # install some software
 yum -y install ruby-devel redhat-lsb puppet-server
