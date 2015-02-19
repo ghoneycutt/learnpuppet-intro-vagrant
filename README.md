@@ -12,3 +12,7 @@ Usage
 `vagrant up`
 
 `vagrant ssh`
+
+## What, no git?
+
+Download [zip file](https://github.com/ghoneycutt/learnpuppet-intro-vagrant/archive/master.zip), uncompress it and follow instructions above.
