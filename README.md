@@ -3,8 +3,8 @@ learnpuppet-intro-vagrant
 
 Manage Vagrant VM used by [LearnPuppet.com](http://learnpuppet.com) for Puppet tutorials.
 
-Usage
-===
+# Usage
+
 `git clone https://github.com/ghoneycutt/learnpuppet-intro-vagrant`
 
 `cd learnpuppet-intro-vagrant`
@@ -19,26 +19,26 @@ Download [zip file](https://github.com/ghoneycutt/learnpuppet-intro-vagrant/arch
 
 
 
-Proxy business
-===
-If you want to run this behind a proxy server you can install the __vagrant-proxyconf__ plugin 
+# Behind a Proxy?
 
-via `vagrant plugin install vagrant-proxyconf`
+If you want to run this behind a proxy server you can install the __vagrant-proxyconf__ plugin with the following command.
 
-and 
+`vagrant plugin install vagrant-proxyconf`
 
-then set the HTTP/HTTPS proxy parameters according to your Operating systems needs
+Then set the HTTP/HTTPS environment settings.
 
-like 
-`set HTTPS_PROXY="https://myexample.org:8080"` 
-and 
-`set HTTP_PROXY="http://wwwproxy.os.amadeus.net:8080"`
-for Windows
+## Windows 
 
-or
-`export HTTP_PROXY="https://myexample.org:8080"`
-`export HTTPS_PROXY="https://myexample.org:8080"`
+```
+set HTTPS_PROXY="https://proxy.example.com:8080"
+set HTTP_PROXY="http://proxy.example.com:8080"
+```
 
-The Vagrantfile is detecting that the plugin is present and will inject these setting
-into your generated box. 
+## *nix
 
+```
+export HTTP_PROXY="https://proxy.example.com:8080"
+export HTTPS_PROXY="https://proxy.example.com:8080"
+```
+
+The Vagrantfile will detect that the plugin is present and will inject these setting into your generated box.
