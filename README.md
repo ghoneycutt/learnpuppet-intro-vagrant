@@ -32,7 +32,7 @@ then set the HTTP/HTTPS proxy parameters according to your Operating systems nee
 like 
 `set HTTPS_PROXY="https://myexample.org:8080"` 
 and 
-`set HTTP_PROXY="http://wwwproxy.os.amadeus.net:8080"`
+`set HTTP_PROXY="http://myexample.org:8080"`
 for Windows
 
 or
