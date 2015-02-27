@@ -39,6 +39,4 @@ or
 `export HTTP_PROXY="https://myexample.org:8080"`
 `export HTTPS_PROXY="https://myexample.org:8080"`
 
-The Vagrantfile is detecting that the plugin is present and will inject these setting
-into your generated box. 
-
+The Vagrantfile is detecting that the plugin is present and will inject these settings into your generated box.
