@@ -27,7 +27,7 @@ If you want to run this behind a proxy server you can install the __vagrant-prox
 
 Then set the HTTP/HTTPS environment settings.
 
-## Windows 
+## Windows
 
 ```
 set HTTPS_PROXY="https://proxy.example.com:8080"
