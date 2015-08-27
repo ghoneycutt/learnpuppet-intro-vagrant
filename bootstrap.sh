@@ -121,4 +121,4 @@ git pull
 ./update_puppet_modules.sh https
 
 # update system
-yum -y update
+#yum -y update
