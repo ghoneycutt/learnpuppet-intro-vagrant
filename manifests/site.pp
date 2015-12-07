@@ -7,7 +7,6 @@ node default {
   class { 'utils':
     packages => [ 'colordiff',
                   'curl',
-                  'nc',
                   'screen',
                   'strace',
                   'sysstat',
