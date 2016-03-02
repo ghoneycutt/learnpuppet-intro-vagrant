@@ -52,6 +52,7 @@ cd ~
 git clone https://github.com/ghoneycutt/puppet-module-skeleton
 mkdir -p `puppet config print vardir`/puppet-module/skeleton/
 rsync -avp --exclude .git puppet-module-skeleton/ `puppet config print vardir`/puppet-module/skeleton/
+cp /vagrant/Rakefile `puppet config print vardir`/puppet-module/skeleton/
 
 # setup puppet.conf
 cat << EOF > /etc/puppet/puppet.conf
